@@ -1,4 +1,7 @@
 const inquirer = require('inquirer');
+const fs = require('fs');
+const layout = require('./layout');
+const markDown = require('./layout');
 
 const promptUser = () => {
     return inquirer.prompt ([
@@ -86,18 +89,20 @@ const promptUser = () => {
             message: 'Please select your license',
             choices: ['MIT License', 'GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'Boost Software License 1.0', 'The Unlicense']
         }
-    ]);
+    ])
+    .then(readmeInfo => {
+        return readmeInfo;
+    })
 };
 
 promptUser()
-.then(answers => {
-    const {projectTitle, description, install, use, github, email, license} = answers;
-    console.log(projectTitle);
-    console.log(description);
-    console.log(install);
-    console.log(use);
-    console.log(github);
-    console.log(email);
-    console.log(license);;
-});
+.then(readmeInfo => {
+    console.log(readmeInfo);
+    const layout = markDown(readmeInfo)
+    fs.writeFile('./README.md', layout, err => {
+        if (err) throw new Error(err);
+        console.log('Created');
+    })
+})
 
+module.exports = promptUser;
