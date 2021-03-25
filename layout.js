@@ -14,18 +14,18 @@ ${description}
 - [License](#License)
 - [Contact](#Contact)
 
-## <a id="Installation"></a> Installation
+## <a name = "Installation"></a> Installation
 ${install}
 
-## <a id="Usage"></a> Usage
+## <a name = "Usage"></a> Usage
 ${use}
 
-## <a id="License"></a> License
+## <a name = "License"></a> License
 ${license}
 
-## <a id="Contact"></a>Contact
-- ${github}
-- ${email}`;
+## <a name = "Contact"></a>Contact
+- [${github}](https://www.github.com/${github})
+- [${email}](mailto:${email})`;
 };
 
 module.exports = markDown;

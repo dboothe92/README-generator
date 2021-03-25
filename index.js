@@ -1,6 +1,5 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const layout = require('./layout');
 const markDown = require('./layout');
 
 const promptUser = () => {
@@ -97,11 +96,9 @@ const promptUser = () => {
 
 promptUser()
 .then(readmeInfo => {
-    console.log(readmeInfo);
     const layout = markDown(readmeInfo)
     fs.writeFile('./README.md', layout, err => {
         if (err) throw new Error(err);
-        console.log('Created');
     })
 })
 
